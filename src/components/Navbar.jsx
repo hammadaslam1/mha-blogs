@@ -62,20 +62,7 @@ const Navbar = () => {
                 Add New
               </Link>
             </Button>
-            <Button
-              variant="plain"
-              size="small"
-              color="danger"
-              sx={{ padding: "unset", marginX: "10px" }}
-            >
-              <Link
-                to="/login"
-                className="links"
-                style={{ textDecoration: "none" }}
-              >
-                Sign Out
-              </Link>
-            </Button>
+            
           </div>
         </nav>
       </Box>
