@@ -1,7 +1,15 @@
-import { Alert, Button, Card, TextField } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  Card,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { useEffect, useState } from "react";
-import { addDoc, collection} from "@firebase/firestore";
+import { addDoc, collection } from "@firebase/firestore";
 import { firestore } from "../firebase";
+import Swal from "sweetalert2";
 
 const Create = () => {
   const [title, setTitle] = useState();
@@ -11,28 +19,29 @@ const Create = () => {
   const [blog, setBlog] = useState();
 
   const handleBlog = () => {
-    if (title, author, blog) {
-        const currentTime = new Date().getTime();
-        const taskRef = addDoc(
-            collection(firestore, `blogs`),
-            {
-              Title: title,
-              Image: image,
-              Author: author,
-              Tags: tags,
-              Blog: blog,
-              Time: currentTime
-            }
-          ).then(() => {
-            // <Alert></Alert>
-            setTitle('')
-            setImage('')
-            setAuthor('')
-            setTags('')
-            setBlog('')
-          })
+    if ((title, author, blog)) {
+      const currentTime = new Date().getTime();
+      const taskRef = addDoc(collection(firestore, `blogs`), {
+        Title: title,
+        Image: image,
+        Author: author,
+        Tags: tags,
+        Blog: blog,
+        Time: currentTime,
+      }).then(() => {
+        setTitle("");
+        setImage("");
+        setAuthor("");
+        setTags("");
+        setBlog("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Your blog is published!'
+        })
+      });
     }
-  }
+  };
 
   return (
     <div>
@@ -68,12 +77,12 @@ const Create = () => {
               />
               <TextField
                 id="outlined-textarea"
+                type="url"
                 label="Image URL"
                 placeholder="https://image.png"
                 color="error"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-                
               />
               <TextField
                 id="outlined-textarea"

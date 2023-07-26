@@ -11,14 +11,16 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div style={{backgroundColor: 'rgb(255, 230, 230)'}}>
+    <div style={{backgroundColor: 'rgb(255, 240, 240)'}}>
       <Box>
         <nav
           style={{
             padding: "10px",
             display: "flex",
             justifyContent: "space-around",
+            zIndex: '5'
           }}
+          
         >
           <Typography variant="h4" component="div" sx={{ fontWeight: "700" }}>
             MHA Blogs
