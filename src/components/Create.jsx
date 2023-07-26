@@ -20,6 +20,7 @@ const Create = () => {
 
   const handleBlog = () => {
     if ((title, author, blog)) {
+      Swal.showLoading();
       const currentTime = new Date().getTime();
       const taskRef = addDoc(collection(firestore, `blogs`), {
         Title: title,
@@ -35,10 +36,20 @@ const Create = () => {
         setTags("");
         setBlog("");
         Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: 'Your blog is published!'
-        })
+          position: "top-end",
+          icon: "success",
+          title: "Your blog is published!",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "failed",
+        text: "Please fill all required fields!",
+        color: "red",
+        confirmButtonColor: "red",
       });
     }
   };

@@ -1,5 +1,4 @@
 import { collection, getDocs, orderBy, query } from "@firebase/firestore";
-import { ExpandMore } from "@mui/icons-material";
 import { firestore } from "../firebase";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -15,15 +14,17 @@ import {
   Collapse,
   IconButton,
   Typography,
-  styled
+  styled,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import Blogs from "./Blogs";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [task, setTask] = useState([]);
-  const [expanded, setExpanded] = useState(false);
 
   const getTasks = async () => {
+    Swal.showLoading()
     console.log("20");
     await getDocs(
       query(collection(firestore, `blogs`), orderBy("Time", "desc"))
@@ -35,27 +36,12 @@ const Home = () => {
       }));
       setTask(data);
       console.log(task);
+      Swal.close()
     });
   };
   useEffect(() => {
     getTasks();
   }, []);
-
-  const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
-
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  }
 
   return (
     <div>
@@ -68,79 +54,23 @@ const Home = () => {
           experiences
         </Typography>
       </div>
-      <div>
-        <div
-        className="blog-card"
-        >
+      
+        <div className="blog-card">
           {task.map((value, key) => {
+            console.log(value);
             return (
-              <Card sx={{ width: "345px", margin: "auto", marginTop: '0', fontSize: '14pt', fontWeight: '700' }}>
-                <CardHeader
-                sx={{fontSize: '14pt', fontWeight: '700'}}
-                  avatar={
-                    <Avatar
-                    
-                      sx={{
-                        bgcolor: "rgb(255, 125, 125)",
-                        color: "rgb(255, 200, 200)",
-                      }}
-                      aria-label=""
-                    ></Avatar>
-                  }
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
-                  }
-                  title={value.Title}
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={
-                    value.Image
-                      ? value.Image
-                      : "https://i0.wp.com/theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png?fit=1200%2C800&ssl=1"
-                  }
-                  alt={value.Title}
-                />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {value.Tags ? value.Tags : ""}
-                  </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
-                  <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </ExpandMore>
-                </CardActions>
-                <Collapse
-                  in={expanded}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <CardContent>
-                    <Typography variant="h5">Blog:</Typography>
-
-                    <Typography paragraph>{value.Blog}</Typography>
-                  </CardContent>
-                </Collapse>
-              </Card>
+              <Blogs
+                title={value.Title}
+                tags={value.Tags}
+                author={value.Author}
+                blog={value.Blog}
+                image={value.Image}
+                key={value.key}
+              />
             );
           })}
         </div>
-      </div>
+      
     </div>
   );
 };

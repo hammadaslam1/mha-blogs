@@ -5,9 +5,16 @@
   text-align: center;
 }
 
+.title{
+  font-size: 18pt;
+  font-weight: 600;
+}
+
 .links {
+  margin: auto 10px;
+  font-size: 11pt;
   color: rgb(20, 20, 20);
-  font-size: x-large;
+  /* font-size: x-large; */
 }
 .links:hover {
   border-bottom: 2px solid rgb(20, 20, 20);
@@ -30,26 +37,67 @@
   padding: 20px;
 }
 
-.blog-quote{
+.blog-quote {
   width: 80%;
   margin: 40px auto;
-  font-size: 28pt;
+  font-size: 18pt;
+}
+
+.MuiCardHeader-title {
+  font-size: 14pt !important;
+  font-weight: 700 !important;
+}
+
+@media only screen and (min-width: 500px) {
+  .blog-quote {
+    width: 80%;
+    margin: 40px auto;
+    font-size: 28pt;
+  }
+  .title{
+    font-size: 22pt;
+    font-weight: 600;
+  }
+  .links {
+    margin: auto 5px;
+    font-size: 14pt;
+    color: rgb(20, 20, 20);
+  }
 }
 
 @media only screen and (min-width: 745px) {
-  .blog-quote{
+  .blog-quote {
     font-size: 36pt;
+    width: 700px;
   }
-  .blog-card{
+  .blog-card {
     display: grid;
     grid-template-columns: repeat(2, 2fr);
     gap: 25px 15px;
   }
+  .title{
+    font-size: 28pt;
+    font-weight: 600;
+  }
+  .links {
+    margin: auto 5px;
+    font-size: 18pt;
+    color: rgb(20, 20, 20);
+  }
 }
 @media only screen and (min-width: 1100px) {
-  .blog-card{
+  .blog-card {
     display: grid;
     grid-template-columns: repeat(3, 2fr);
     gap: 25px 15px;
+  }
+  .title{
+    font-size: 30pt;
+    font-weight: 600;
+  }
+  .links {
+    margin: auto 5px;
+    font-size: 20pt;
+    color: rgb(20, 20, 20);
   }
 }
