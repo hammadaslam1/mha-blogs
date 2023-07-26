@@ -1,7 +1,7 @@
-import { Button, Card, TextField } from "@mui/material";
+import { Alert, Button, Card, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { addDoc, collection} from "@firebase/firestore";
-import {firestore} from "../firebase"
+import { firestore } from "../firebase";
 
 const Create = () => {
   const [title, setTitle] = useState();
@@ -14,7 +14,7 @@ const Create = () => {
     if (title, author, blog) {
         const currentTime = new Date().getTime();
         const taskRef = addDoc(
-            collection(firestore, "todos/" + {author}),
+            collection(firestore, `blogs`),
             {
               Title: title,
               Image: image,
@@ -23,7 +23,14 @@ const Create = () => {
               Blog: blog,
               Time: currentTime
             }
-          );
+          ).then(() => {
+            // <Alert></Alert>
+            setTitle('')
+            setImage('')
+            setAuthor('')
+            setTags('')
+            setBlog('')
+          })
     }
   }
 

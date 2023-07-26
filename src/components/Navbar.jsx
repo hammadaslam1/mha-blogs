@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
+    <div style={{backgroundColor: 'rgb(255, 230, 230)'}}>
       <Box>
         <nav
           style={{
