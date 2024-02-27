@@ -25,17 +25,14 @@ const Home = () => {
 
   const getTasks = async () => {
     Swal.showLoading()
-    console.log("20");
     await getDocs(
       query(collection(firestore, `blogs`), orderBy("Time", "desc"))
     ).then((snapshot) => {
-      console.log("10");
       const data = snapshot.docs.map((doc) => ({
         ...doc.data(),
         key: doc.id,
       }));
       setTask(data);
-      console.log(task);
       Swal.close()
     });
   };
@@ -57,7 +54,6 @@ const Home = () => {
       
         <div className="blog-card">
           {task.map((value, key) => {
-            console.log(value);
             return (
               <Blogs
                 title={value.Title}

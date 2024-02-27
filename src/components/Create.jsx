@@ -5,6 +5,7 @@ import {
   Card,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { addDoc, collection } from "@firebase/firestore";
@@ -56,6 +57,12 @@ const Create = () => {
 
   return (
     <div>
+      <Typography
+          variant="h4"
+          sx={{ color: "rgb(20, 20, 20)", margin: '20px', fontWeight: "600" }}
+        >
+          Add new <strong style={{ color: "red" }}>Blog</strong>
+        </Typography>
       <Card sx={{ maxWidth: "800px", margin: "20px auto" }} elevation={10}>
         <div className="create-quiz">
           <form style={{ padding: "30px" }}>
@@ -64,18 +71,9 @@ const Create = () => {
                 border: "none",
                 display: "grid",
                 gridTemplateColumns: "repeat(2, 5fr)",
-                gap: "25px 15px",
+                gap: "25px 15px"
               }}
             >
-              <legend
-                style={{
-                  fontWeight: "700",
-                  fontSize: "18pt",
-                  margin: "25px auto",
-                }}
-              >
-                Add New Blog
-              </legend>
 
               <TextField
                 id="outlined-textarea"

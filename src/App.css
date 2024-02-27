@@ -14,7 +14,6 @@
   margin: auto 10px;
   font-size: 11pt;
   color: rgb(20, 20, 20);
-  /* font-size: x-large; */
 }
 .links:hover {
   border-bottom: 2px solid rgb(20, 20, 20);
@@ -59,7 +58,7 @@
     font-weight: 600;
   }
   .links {
-    margin: auto 5px;
+    margin: auto 20px;
     font-size: 14pt;
     color: rgb(20, 20, 20);
   }
@@ -80,7 +79,7 @@
     font-weight: 600;
   }
   .links {
-    margin: auto 5px;
+    margin: auto 20px;
     font-size: 18pt;
     color: rgb(20, 20, 20);
   }
@@ -96,7 +95,7 @@
     font-weight: 600;
   }
   .links {
-    margin: auto 5px;
+    margin: auto 20px;
     font-size: 20pt;
     color: rgb(20, 20, 20);
   }
